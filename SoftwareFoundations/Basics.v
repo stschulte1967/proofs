@@ -344,7 +344,63 @@ Proof.
   reflexivity.
 Qed.
 
+Theorem plus_1_neg_0 : forall n : nat, (n+1) =? 0 = false.
+Proof.
+  intro n.
+  destruct n as [|n'] eqn: E.
+  - reflexivity.
+  - reflexivity.
+Qed.
 
+Theorem negb_involutive : forall b : bool, negb (negb b) = b.
+Proof.
+  intro b.
+  destruct b eqn: E.
+  - reflexivity.
+  - reflexivity.
+Qed.
+
+Theorem andb_commmutative : forall b c, andb b c = andb c b.
+Proof.
+  intros b c.
+  destruct c eqn:Ec.
+  - destruct b eqn:Eb.
+    + reflexivity.
+    + reflexivity.
+  - destruct b eqn:Eb.
+    + reflexivity.
+    + reflexivity.
+Qed.
+
+Theorem andb3_exchange : forall b c d, andb (andb b c) d = andb (andb b d) c.
+Proof.
+  intros b c d. destruct b eqn:Eb.
+  - destruct c eqn:Ec.
+  -- destruct d eqn:Ed.
+  --- reflexivity.
+  --- reflexivity.
+  -- destruct d eqn:Ed.
+  --- reflexivity.
+  --- reflexivity.
+  - destruct c eqn:Ec.
+  -- destruct d eqn:Ed.
+  --- reflexivity.
+  --- reflexivity.
+  -- destruct d eqn:Ed.
+  --- reflexivity.
+  --- reflexivity.
+Qed.
+
+Theorem abdb_true_elim2 : forall b c : bool, andb b c = true -> c = true.
+Proof.
+  intros b c. destruct c eqn:Ec.
+  - destruct b eqn:Eb.
+  -- reflexivity.
+  -- reflexivity.
+  - destruct b eqn:Eb.
+  -- intro H. rewrite <- H. reflexivity.
+  -- intro H. rewrite <- H. reflexivity.
+Qed.
 
 
 
